@@ -44,7 +44,7 @@ jobs:
         git clone https://github.com/hotshotsreeram/helm-sample.git
 
     - name: connect to cluster
-      run: eks update-kubeconfig --region us-east-2 --name test-cluster
+      run: aws eks update-kubeconfig --region us-east-2 --name test-cluster
 
     - name: Helm install
       run: |
