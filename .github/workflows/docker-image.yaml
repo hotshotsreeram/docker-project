@@ -17,7 +17,7 @@ jobs:
       timeout-minutes: 12
 
     - name: Building docker image
-      run: docker build . -t my-app:$(date +%s) 
+      run: docker build . -t my-app:practicesreeramrepo:latest 
       working-directory: "./"
 
     - name: Docker login
@@ -29,7 +29,6 @@ jobs:
 
     - name: Docker Push
       run: |
-        docker tag my-app:$(date +%s) ${{secrets.DOCKER_USER}}/practicesreeramrepo
         docker push ${{secrets.DOCKER_USER}}/practicesreeramrepo
 
 
