@@ -1,18 +1,10 @@
-FROM node:13-alpine
+FROM nginx
 
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=password
+RUN apt-get update && apt-get upgrade -y
 
-RUN mkdir -p /home/app
+COPY index.html /usr/share/nginx/html
 
-COPY ./app /home/app
+EXPOSE 3000
 
-# set default dir so that next commands executes in /home/app dir
-WORKDIR /home/app
-
-# will execute npm install in /home/app because of WORKDIR
-RUN npm install
-
-# no need for /home/app/server.js because of WORKDIR
-CMD ["node", "server.js"]
+CMD ["nginx", "-g", "deamon off;"]
 
