@@ -29,7 +29,6 @@ jobs:
 
     - name: Docker Push
       run: |
-        docker tag my-app:1.0 
         docker push ${{secrets.DOCKER_USER}}/practicesreeramrepo
 
 
