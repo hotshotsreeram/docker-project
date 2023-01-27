@@ -1,5 +1,6 @@
 name: 'Docker Image CI'
 on:
+  workflow_dispach: {}
   push:
     branches:
       - main
