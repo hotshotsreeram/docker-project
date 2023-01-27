@@ -32,6 +32,25 @@ jobs:
         docker tag my-app:1.0 ${{secrets.DOCKER_USER}}/practicesreeramrepo
         docker push ${{secrets.DOCKER_USER}}/practicesreeramrepo
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Git clone helm repo
+      run : |
+        git clone https://github.com/hotshotsreeram/helm-sample.git
+
+    - name: connect to cluster
+      run: eks update-kubeconfig --region us-east-2 --name test-cluster
+
+    - name: Helm install
+      run: |
+        pwd
+        helm upgrade --install sample-chart helm-sample/ --values helm-sample/values.yaml
+
 
 
 
