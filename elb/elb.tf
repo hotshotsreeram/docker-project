@@ -16,5 +16,5 @@ resource "aws_elb" "practice_elb" {
     instance_port = "8080"
     instance_protocol = "http"
   }
-  instances= [i-0c12cf8552ad42a64]
+  instances= ["i-0c12cf8552ad42a64",]
 }
