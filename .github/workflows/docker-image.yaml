@@ -53,7 +53,7 @@ jobs:
         echo "$MY_PRACTICE" > My_practice.pem && chmod 600 My_practice.pem
         ssh -o StrictHostKeyChecking=no -i My_practice.pem ubuntu@44.201.28.29
         ls -al
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWOR
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         docker pull sreeramdockerrepo/practicesreeramrepo:latest
         docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo
 
