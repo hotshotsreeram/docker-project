@@ -46,23 +46,22 @@ jobs:
 
     - name: ssh into matchine
       uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.MY_PRACTICE }}
-        port: ${{ secrets.PORT }}
       env:
         MY_PRACTICE: ${{secrets.MY_PRACTICE}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        
-        ls -al
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        docker pull sreeramdockerrepo/practicesreeramrepo:latest
-        docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo
-        docker ps
-        whoami
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          ls -al
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker pull sreeramdockerrepo/practicesreeramrepo:latest
+          docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo
+          docker ps
+          whoami
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
