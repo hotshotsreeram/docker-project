@@ -44,6 +44,12 @@ jobs:
       run : |
         git clone https://github.com/hotshotsreeram/helm-sample.git
 
+    - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY }}
+          known_hosts: unnecessary
+
     - name: ssh into matchine
       uses: appleboy/ssh-action@v0.1.7
       env:
