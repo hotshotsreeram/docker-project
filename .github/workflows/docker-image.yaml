@@ -47,20 +47,26 @@ jobs:
     - name: ssh into matchine
       env:
         MY_PRACTICE: ${{secrets.MY_PRACTICE}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: |
         echo "$MY_PRACTICE" > My_practice.pem && chmod 600 My_practice.pem
         ssh -o StrictHostKeyChecking=no -i My_practice.pem ubuntu@44.201.28.29
         ls -al
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWOR
+        docker pull sreeramdockerrepo/practicesreeramrepo:latest
+        docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
 
-    - name: connect to cluster
-      run: aws eks update-kubeconfig --region us-east-2 --name test-cluster
-
-    - name: Helm install
+    - name: Deploying load balancer
+      id: init
       run: |
-        pwd
-        helm upgrade --install sample-chart helm-sample/ --values helm-sample/values.yaml
-
+        cd elb
+        terraform init
+        terraform plan -var-file="values.tfvars"
+        terraform apply -var-file="values.tfvars" -auto-approve
 
 
 
