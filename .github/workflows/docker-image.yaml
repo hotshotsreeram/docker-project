@@ -55,7 +55,7 @@ jobs:
         MY_PRACTICE: ${{secrets.MY_PRACTICE}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      script: |
+      run: |
         
         ls -al
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
