@@ -45,13 +45,18 @@ jobs:
         git clone https://github.com/hotshotsreeram/helm-sample.git
 
     - name: ssh into matchine
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.MY_PRACTICE }}
+        port: ${{ secrets.PORT }}
       env:
         MY_PRACTICE: ${{secrets.MY_PRACTICE}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        echo "$MY_PRACTICE" > My_practice.pem && chmod 600 My_practice.pem
-        ssh -o StrictHostKeyChecking=no -i My_practice.pem ubuntu@44.201.28.29
+      script: |
+        
         ls -al
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         docker pull sreeramdockerrepo/practicesreeramrepo:latest
