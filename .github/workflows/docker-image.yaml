@@ -64,6 +64,8 @@ jobs:
           ls -al
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker pull sreeramdockerrepo/practicesreeramrepo:latest
+          docker stop my-practice
+          docker rm my-practice
           docker run -d --name my-practice -p 8080:80 sreeramdockerrepo/practicesreeramrepo 
           docker run -d  --name watchtower  -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower my-practice
           docker ps
