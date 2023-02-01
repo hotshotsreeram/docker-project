@@ -64,10 +64,10 @@ jobs:
         script: |
           ls -al
           docker login -u AWS -p ${{secrets.ECR_TOKEN}} 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo
-          docker pull 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo/practice-repo:latest
+          docker pull 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo:latest
           docker stop my-practice
           docker rm my-practice
-          docker run -d --name my-practice -p 8080:80 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo/practice-repo 
+          docker run -d --name my-practice -p 8080:80 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo 
           docker run -d  --name watchtower  -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower my-practice
           docker ps
           whoami
