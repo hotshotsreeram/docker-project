@@ -46,7 +46,7 @@ jobs:
 
     - name: ssh into matchine
       env:
-        MY_PRACTICE: ${{secret.MY_SECRET}}
+        MY_PRACTICE: ${{secret.MY_PRACTICE}}
       run: |
         echo "$MY_PRACTICE" > My_practice.pem && chmod 600 My_practice.pem
         ssh -o StrictHostKeyChecking=no -i My_practice.pem ubuntu@44.201.28.29
