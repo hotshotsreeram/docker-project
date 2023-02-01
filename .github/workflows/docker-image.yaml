@@ -57,6 +57,7 @@ jobs:
         docker pull sreeramdockerrepo/practicesreeramrepo:latest
         docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo
         docker ps
+        pwd
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
