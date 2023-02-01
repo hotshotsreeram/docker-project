@@ -44,6 +44,15 @@ jobs:
       run : |
         git clone https://github.com/hotshotsreeram/helm-sample.git
 
+    - name: ssh into matchine
+      env:
+        MY_PRACTICE: ${{secret.MY_SECRET}}
+      run: |
+        echo "$MY_PRACTICE" > My_practice.pem && chmod 600 My_practice.pem
+        ssh -o StrictHostKeyChecking=no -i My_practice.pem ubuntu@44.201.28.29
+        ls -al
+
+
     - name: connect to cluster
       run: aws eks update-kubeconfig --region us-east-2 --name test-cluster
 
