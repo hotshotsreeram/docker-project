@@ -37,8 +37,8 @@ jobs:
 
     - name: Docker Push
       run: |
-        docker tag my-app:1.0 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo/practice-repo
-        docker push 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo/practice-repo
+        docker tag my-app:1.0 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo
+        docker push 675920801761.dkr.ecr.us-east-2.amazonaws.com/practice-repo
 
     - name: Git clone helm repo
       run : |
