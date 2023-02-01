@@ -33,7 +33,7 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER1}}
         TOKEN: ${{secrets.ECR_TOKEN}}
       run: |
-        docker login -u AWS -p $TOKEN $DOCKER_USER
+        docker login -u AWS -p $TOKEN \ $DOCKER_USER
 
     - name: Docker Push
       run: |
@@ -63,7 +63,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           ls -al
-          docker login -u AWS -p $TOKEN $DOCKER_USER
+          docker login -u AWS -p ${{secrets.TOKEN}} \ ${{secrets.DOCKER_USER1}}
           docker pull ${{secrets.DOCKER_USER1}}/practice-repo:latest
           docker stop my-practice
           docker rm my-practice
