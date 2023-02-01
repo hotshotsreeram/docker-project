@@ -64,7 +64,7 @@ jobs:
           ls -al
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker pull sreeramdockerrepo/practicesreeramrepo:latest
-          docker run -p 8080:80 sreeramdockerrepo/practicesreeramrepo
+          docker run -d -p 8080:80 sreeramdockerrepo/practicesreeramrepo --restart=always
           docker ps
           whoami
 
