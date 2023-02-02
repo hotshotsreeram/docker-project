@@ -86,7 +86,6 @@ jobs:
     - name: Creating AMI
       id: ami
       run: |
-        cd ..
         cd ami
         terraform init
         terraform plan -var-file="values.tfvars"
