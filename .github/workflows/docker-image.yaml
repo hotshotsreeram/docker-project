@@ -33,7 +33,7 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER1}}
         TOKEN: ${{secrets.ECR_TOKEN}}
       run: |
-        docker login -u AWS --password-stdin $TOKEN 675920801761.dkr.ecr.us-east-2.amazonaws.com
+        docker login -u AWS -p $TOKEN 675920801761.dkr.ecr.us-east-2.amazonaws.com
 
     - name: Docker Push
       run: |
