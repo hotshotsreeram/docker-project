@@ -83,6 +83,15 @@ jobs:
         terraform plan -var-file="values.tfvars"
         terraform apply -var-file="values.tfvars" -auto-approve
 
+    - name: Creating AMI
+      id: ami init
+      run: |
+        cd ..
+        cd ami
+        terraform init
+        terraform plan -var-file="values.tfvars"
+        terraform apply -var-file="values.tfvars" -auto-approve
+
 
 
 
