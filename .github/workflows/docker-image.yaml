@@ -84,7 +84,7 @@ jobs:
         terraform apply -var-file="values.tfvars" -auto-approve
 
     - name: Creating AMI
-      id: ami init
+      id: ami
       run: |
         cd ..
         cd ami
